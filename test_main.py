@@ -34,6 +34,3 @@ class TestC1(unittest.TestCase):
         imp = input()
         window.close()
 
-if __name__ == "__main__":
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestC1)
-    unittest.TextTestRunner().run(suite)
