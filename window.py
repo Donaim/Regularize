@@ -1,12 +1,10 @@
 import pygame 
 from threading import Thread
-import random
+from cmap import *
 
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELL_SIZE = 30
-CELL_W = 10
-CELL_H = 10
 
 windowSurface = None
 clock = pygame.time.Clock()
@@ -48,14 +46,33 @@ def close():
     running = False
     pygame.quit()
 
-def create_random_map():
+def create_random_colorized_map():
+    return colorize_bool_map( create_random_map() )
+def colorize_bool_map(arr: list):
+    if len(arr) != CELL_W:
+        raise Exception('Wrong width {}, has to be {}'.format(len(arr), CELL_W))
+
     re = []
     for x in range(0, CELL_W):
+        if len(arr[x]) != CELL_H:
+            raise Exception('Wrong height {}, has to be {}'.format(len(arr[x]), CELL_H))
+
         row = []
         for y in range(0, CELL_H):
-            row.append(random.choice([RED, BLUE]))
+            row.append(RED if arr[x][y] else BLUE)
         re.append(row)
     return re
+def uncolorize_map(arr: list) -> list:
+    if len(arr) != CELL_W:
+        raise Exception('Wrong width {}, has to be {}'.format(len(arr), CELL_W))
 
+    re = []
+    for x in range(0, CELL_W):
+        if len(arr[x]) != CELL_H:
+            raise Exception('Wrong height {}, has to be {}'.format(len(arr[x]), CELL_H))
 
-
+        row = []
+        for y in range(0, CELL_H):
+            row.append(True if arr[x][y] == RED else False)
+        re.append(row)
+    return re
