@@ -17,10 +17,10 @@ def main():
     def check(): return (p.returncode is None) and (not u._forse_exit)
     def callback(): 
         bma = updater.load_map(fname)
-        window.update_map_bool(bma)
-
         if not bma is None:
-            if cmap.equal_q(bma, u._current_bmap):
+            updater.update_right_map(bma)
+
+            if cmap.equal_q(bma, updater.left_bmap):
                 print ('match    :)', end = ' ')
             else:
                 print ('no match :(', end = ' ')
