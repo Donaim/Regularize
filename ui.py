@@ -7,6 +7,7 @@ import threading
 
 def create_temp() -> str:
     fname = tempfile.mktemp()
+    fname += '.py'
     f = open(fname, 'w+') # just create it
     f.close()
     return fname

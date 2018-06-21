@@ -9,6 +9,7 @@ def pprint(obj): pp.pprint(obj)
 import window
 import ui
 import cmap
+import updater
 
 class TestC1(unittest.TestCase):
 
@@ -36,15 +37,16 @@ class TestC1(unittest.TestCase):
         imp = input()
         window.close()
     def test_open_file(self):
+        window.show()
+
         fname = ui.create_temp()
-        file  = ui.open_file('/bin/nano', fname)
-        
-        def check(): return True
-        def callback():
-            print('hello')
+        file  = ui.open_file('/usr/bin/gedit', fname)
+
+        def check(): return file.returncode is None
+        def callback(): updater.update_window(fname)
+
         ui.listen_file_sync(fname, check, callback)
 
-        print('end of open-file-test')
     def test_map_convertions(self):
         ma = window.create_random_colorized_map()
         pprint(ma)
