@@ -19,8 +19,8 @@ class TestC1(unittest.TestCase):
     def test_random_map(self):
         window.show()
 
-        ma = window.create_random_map()
-        window.update_map(ma)
+        ma = window.create_random_colorized_map()
+        window.update_map(ma, False)
 
         inp = input()
         window.close()
@@ -30,8 +30,8 @@ class TestC1(unittest.TestCase):
         window.show()
         print('second loop started')
 
-        ma = window.create_random_map()
-        window.update_map(ma)
+        ma = window.create_random_colorized_map()
+        window.update_map(ma, False)
 
         imp = input()
         window.close()

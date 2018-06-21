@@ -5,17 +5,20 @@ from cmap import *
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELL_SIZE = 30
+DX = 10
 
 windowSurface = None
 clock = pygame.time.Clock()
 
-def draw_cell(color : (int, int, int), x, y):
-    pygame.draw.rect(windowSurface, color, (CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE))
+def draw_cell(color : (int, int, int), x, y, offset):
+    pygame.draw.rect(windowSurface, color, (CELL_SIZE * x + offset, CELL_SIZE * y, CELL_SIZE, CELL_SIZE))
 
-def update_map(m : list):
+def update_map(m : list, right: bool):
+    offset = DX + (CELL_SIZE * CELL_W) if right else 0
+
     for x in range(0, len(m)):
         for y in range(0, len(m[0])):
-            draw_cell(m[x][y], x, y)
+            draw_cell(m[x][y], x, y, offset)
     pygame.display.update()
 
 running = False
@@ -37,7 +40,7 @@ def show():
 
     global windowSurface
     pygame.init()
-    windowSurface = pygame.display.set_mode((CELL_SIZE * CELL_W, CELL_SIZE * CELL_H))
+    windowSurface = pygame.display.set_mode(((CELL_SIZE * CELL_W) * 2 + DX, CELL_SIZE * CELL_H))
     
     loop_th = Thread(target=game_loop)
     loop_th.start()
