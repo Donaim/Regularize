@@ -31,4 +31,4 @@ def update_window(fname: str):
         cma = window.colorize_bool_map(reg)
         window.update_map(cma, True)
     except Exception as e:
-        print('error =', e)
+        print('error:', e)
