@@ -20,6 +20,12 @@ def update_map(m : list, right: bool):
         for y in range(0, len(m[0])):
             draw_cell(m[x][y], x, y, offset)
     pygame.display.update()
+def update_map_bool(bma: list):
+    try:
+        cma = colorize_bool_map(bma)
+        update_map(cma, True)
+    except Exception as e:
+        print('error:', e)
 
 running = False
 def game_loop():

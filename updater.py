@@ -24,11 +24,10 @@ def load_module(path: str) -> module:
     
     return module
 
-def update_window(fname: str):
+def load_map(fname: str):
     try:
         m = load_module(fname)
-        reg = m.reg
-        cma = window.colorize_bool_map(reg)
-        window.update_map(cma, True)
+        return m.reg
     except Exception as e:
         print('error:', e)
+        return None

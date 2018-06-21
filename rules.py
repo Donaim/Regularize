@@ -7,6 +7,11 @@ re_tok = re.compile(r'[ ,=:\(\)]+')
 re_line = re.compile(r'\n+')
 re_ignore = re.compile(r'(^\s*def\s.*)|(^\s*$)')
 
+def count_tokens_from_file(path: str):
+    with open(path, 'r') as r:
+        text = r.read()
+        return count_tokens(text)
+        
 def count_tokens(text : str) -> int:
     return len(list(get_tokens(text)))
 

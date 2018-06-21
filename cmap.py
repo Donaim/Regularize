@@ -1,7 +1,7 @@
 import random
 
-CELL_W = 10
-CELL_H = 10
+CELL_W = 3
+CELL_H = 3
 
 def create_random_map():
     re = []
@@ -42,4 +42,18 @@ def text_to_bool_map(text: str) -> list:
             row.append(b)
         re.append(row)
     return re
-
+def equal_q(a: list, b: list) -> bool:
+    if len(a) != len(b): 
+        # print('wrong sizes: {} x {}'.format(len(a), len(b)))
+        return False
+    
+    for x in range(len(a)):
+        if len(a[x]) != len(b[x]): 
+            # print('wrong sizes at {} : {} x {}'.format(x, len(a[x]), len(b[x])))
+            return False
+        for y in range(len(a[x])):
+            if a[x][y] != b[x][y]: 
+                # print('not equal at [{}][{}] : {} x {}'.format(x, y, a[x][y], b[x][y]))
+                return False
+    
+    return True
