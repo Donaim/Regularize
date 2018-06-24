@@ -28,6 +28,11 @@ class Parser:
         cmap.CELL_H = new_hight
         window.resize()
         self.reload()
+    def change_csize(self, new_size):
+        new_size = int(new_size)
+        window.CELL_SIZE = new_size
+        window.resize()
+        updater.update_maps()
 
     def _parse_arguments(self, expected_num: int) -> list:
         if len(self._command_split) != 1 + expected_num:
@@ -46,7 +51,7 @@ class Parser:
             if len(self._command_split) < 1: continue
             func = self._command.split()[0]
 
-            if func == 'exit':
+            if func == 'exit' or self._forse_exit:
                 self._forse_exit = True
                 return
             elif func in funcs:

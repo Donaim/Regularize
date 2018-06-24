@@ -1,7 +1,7 @@
 import random
 
-CELL_W = 3
-CELL_H = 3
+CELL_W = 15
+CELL_H = 15
 
 def create_random_map():
     re = []
